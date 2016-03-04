@@ -1,20 +1,14 @@
-import React from 'react'
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom'
 import ProgressSoundPlayer from './components/ProgressSoundPlayer'
 import SC from 'node-soundcloud'
-
 import Spinner from 'react-spinkit';
 
-const { Component } = React;
-
-var client_id = 'your soundcloud api key';
+var client_id = 'your soundcloud client ID';
 
 SC.init({
   id: client_id
 });
-
-var main = document.getElementById('main');
-
 
 class Main extends Component {
 
@@ -26,7 +20,7 @@ class Main extends Component {
 			hasResults: false,
 			searchResults: [],
 			isLoading: false
-		}
+		};
 
 		this.handleTextChange = this.handleTextChange.bind(this);
 		this.search = this.search.bind(this);
@@ -42,7 +36,6 @@ class Main extends Component {
 	}
 
 	search(){
-		
 		this.setState({
 			isLoading: true
 		});
@@ -60,7 +53,6 @@ class Main extends Component {
 		 	   	});
 			}
 		});
-
 	}
 
 	render(){
@@ -90,11 +82,11 @@ class Main extends Component {
 	}
 
 	renderPlayer(track){
-
 		return (
 			<ProgressSoundPlayer key={track.id} clientId={client_id} resolveUrl={track.permalink_url} />
 		);
 	}
 }
 
+var main = document.getElementById('main');
 ReactDOM.render(<Main />, main);

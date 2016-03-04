@@ -1,23 +1,19 @@
-import React from 'react'
+import React, {Component, PropTypes} from 'react';
 import { SoundPlayerContainer } from 'react-soundplayer/addons';
-import Track from './Track'
+import Track from './Track';
 
-const { PropTypes, Component } = React;
-
-class ProgressSoundPlayer extends Component {
+export default class ProgressSoundPlayer extends Component {
     render() {
+    	let {resolveUrl, clientId} = this.props;
         return (
-            <SoundPlayerContainer {...this.props}>
+            <SoundPlayerContainer resolveUrl={resolveUrl} clientId={clientId}>
                 <Track />
             </SoundPlayerContainer>
         );
     }
 }
 
-
 ProgressSoundPlayer.propTypes = {
     resolveUrl: PropTypes.string.isRequired,
     clientId: PropTypes.string.isRequired
 };
-
-export default ProgressSoundPlayer;
