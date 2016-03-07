@@ -27,6 +27,9 @@ class Main extends Component {
 		this.setState({
 			query: event.target.value
 		});
+		if(event.key == 'Enter'){
+			this.search.call(this);
+		}
 	}
 
 	search(){
@@ -53,7 +56,7 @@ class Main extends Component {
 		return (
 			<div>
 				<h1>Electron SoundCloud Player</h1>
-				<input type="search" onChange={this.handleTextChange.bind(this)} className="search-field" placeholder="Enter song name or artist..." />
+				<input type="search" onKeyUp={this.handleTextChange.bind(this)} className="search-field" placeholder="Enter song name or artist..." />
 				<button className="search-button" onClick={this.search.bind(this)}>Search</button>
 				{this.state.isLoading && <Spinner spinnerName='three-bounce' />}
 				{this.state.hasResults && !this.state.isLoading ? this.renderSearchResults.call(this) : this.renderNoSearchResults.call(this)}
