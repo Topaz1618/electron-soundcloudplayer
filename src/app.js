@@ -4,7 +4,7 @@ import ProgressSoundPlayer from './components/ProgressSoundPlayer'
 import SC from 'node-soundcloud'
 import Spinner from 'react-spinkit';
 
-var client_id = 'your soundcloud client ID';
+var client_id = 'your soundcloud app client id';
 
 SC.init({
   id: client_id
@@ -21,12 +21,6 @@ class Main extends Component {
 			searchResults: [],
 			isLoading: false
 		};
-
-		this.handleTextChange = this.handleTextChange.bind(this);
-		this.search = this.search.bind(this);
-		this.renderSearchResults = this.renderSearchResults.bind(this);
-		this.renderNoSearchResults = this.renderNoSearchResults.bind(this);
-		this.renderPlayer = this.renderPlayer.bind(this);
 	}
 
 	handleTextChange(event){
@@ -59,10 +53,10 @@ class Main extends Component {
 		return (
 			<div>
 				<h1>Electron SoundCloud Player</h1>
-				<input type="search" onChange={this.handleTextChange} className="search-field" placeholder="Enter song name or artist..." />
-				<button className="search-button" onClick={this.search}>Search</button>
+				<input type="search" onChange={this.handleTextChange.bind(this)} className="search-field" placeholder="Enter song name or artist..." />
+				<button className="search-button" onClick={this.search.bind(this)}>Search</button>
 				{this.state.isLoading && <Spinner spinnerName='three-bounce' />}
-				{this.state.hasResults && !this.state.isLoading ? this.renderSearchResults() : this.renderNoSearchResults()}
+				{this.state.hasResults && !this.state.isLoading ? this.renderSearchResults.call(this) : this.renderNoSearchResults.call(this)}
 			</div>
 		);
 	}
@@ -76,7 +70,7 @@ class Main extends Component {
 	renderSearchResults(){
 		return (
 			<div id="search-results">
-				{this.state.searchResults.map(this.renderPlayer, this)}
+				{this.state.searchResults.map(this.renderPlayer.bind(this))}
 			</div>
 		);
 	}
