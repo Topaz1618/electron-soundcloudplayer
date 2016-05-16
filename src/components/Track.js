@@ -3,7 +3,8 @@ import { PlayButton, Progress, Timer } from 'react-soundplayer/components';
 
 export default class Track extends Component {
     render() {
-        const { track, soundCloudAudio, playing, seeking, currentTime, duration } = this.props;
+        let { track, soundCloudAudio, playing, seeking, currentTime, duration } = this.props;
+        let currentProgress = this.props.currentTime / this.props.duration * 100 || 0;
         
         return (
             <div className="player">
@@ -12,7 +13,11 @@ export default class Track extends Component {
                     soundCloudAudio={soundCloudAudio} 
                     playing={playing} 
                     seeking={seeking} />
-                <Timer duration={duration} className="timer" currentTime={currentTime} />
+                <Timer 
+                    duration={duration} 
+                    className="timer" 
+                    soundCloudAudio={soundCloudAudio}
+                    currentTime={currentTime} />
                 <div className="track-info">
                     <h2 className="track-title">{track && track.title}</h2>
                     <h3 className="track-user">{track && track.user && track.user.username}</h3>
@@ -20,7 +25,8 @@ export default class Track extends Component {
                 <Progress 
                     className="progress-container" 
                     innerClassName="progress" 
-                    value={currentTime / duration * 100 || 0} />
+                    soundCloudAudio={soundCloudAudio}
+                    value={currentProgress} />
             </div>
         );
     }

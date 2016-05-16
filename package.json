@@ -4,7 +4,8 @@
   "description": "Plays music from SoundCloud",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "compile": "browserify -t [ babelify --presets [ react es2015 ] ] src/app.js -o js/app.js"
   },
   "author": "Wern Ancheta",
   "devDependencies": {
@@ -19,7 +20,7 @@
     "node-soundcloud": "0.0.5",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-    "react-soundplayer": "^0.3.2",
+    "react-soundplayer": "^0.3.5",
     "react-spinkit": "^1.1.4",
     "soundcloud-audio": "^1.0.0"
   }
