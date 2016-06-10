@@ -37,10 +37,6 @@
   vertical-align: middle;
 }
 
-.three-bounce.spinner > div {
-  background-color: #FFB935;
-}
-
 .progress-container {
   background-color: #DDD;
   width: 100%;
@@ -102,8 +98,9 @@
   padding: 20px;
 }
 
-.spinner {
-  padding: 30px;
+.center {
+  width: 64px;
+  margin: 0 auto;
 }
 
 #main {
