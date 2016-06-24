@@ -3,8 +3,8 @@ import { PlayButton, Progress, Timer } from 'react-soundplayer/components';
 
 export default class Track extends Component {
   render() {
-    let { track, soundCloudAudio, playing, seeking, currentTime, duration } = this.props;
-    let currentProgress = this.props.currentTime / this.props.duration * 100 || 0;
+    const { track, soundCloudAudio, playing, seeking, currentTime, duration } = this.props;
+    const currentProgress = this.props.currentTime / this.props.duration * 100 || 0;
 
     return (
       <div className="player">
